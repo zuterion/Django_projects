@@ -1,0 +1,101 @@
+<h2>{{ productline|default_if_none:'Create Product Line' }}</h2>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        color: #333;
+        font-size: 26px;
+        font-weight: 600;
+    }
+
+    /* Centering wrapper */
+    .form-container {
+        max-width: 520px;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #333;
+        font-size: 14px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 18px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        box-sizing: border-box;
+        transition: 0.2s;
+        background: #fafafa;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+        border-color: #0066ff;
+        box-shadow: 0 0 5px rgba(0,102,255,0.35);
+        background: #fff;
+        outline: none;
+    }
+
+    textarea {
+        min-height: 90px;
+        resize: vertical;
+    }
+
+    button {
+        background: #0066ff;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+        transition: background 0.2s;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    button:hover {
+        background: #004ecc;
+    }
+</style>
+
+
+<div class="form-container">
+    <form method="post">
+        {% csrf_token %}
+
+        {% if not productline %}
+            <label>Product Line</label>
+            <input type="text" name="productLine" required>
+        {% endif %}
+
+        <label>Description</label>
+        <textarea name="textDescription">{{ productline.textDescription }}</textarea>
+
+        <label>HTML Description</label>
+        <textarea name="htmlDescription">{{ productline.htmlDescription }}</textarea>
+
+        <button type="submit">Save</button>
+    </form>
+</div>

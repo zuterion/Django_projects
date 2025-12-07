@@ -1,0 +1,90 @@
+<h2>Product Lines</h2>
+
+<a href="{% url 'productline_create' %}" class="add-btn">Add Product Line</a>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+        margin: 30px 0 10px;
+        color: #333;
+        font-size: 26px;
+        font-weight: 600;
+    }
+
+    /* Center content area */
+    .container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Add button */
+    .add-btn {
+        display: block;
+        width: fit-content;
+        margin: 0 auto 20px;
+        padding: 12px 20px;
+        background: #0066ff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: bold;
+        transition: background 0.2s;
+    }
+
+    .add-btn:hover {
+        background: #004ecc;
+    }
+
+    /* Product list */
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 600px;
+    }
+
+    li {
+        background: #fff;
+        padding: 16px;
+        margin: 12px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .actions a {
+        color: #0066ff;
+        text-decoration: none;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+
+    .actions a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="container">
+    <ul>
+        {% for pl in productlines %}
+        <li>
+            <span>{{ pl.productLine }}</span>
+            <span class="actions">
+                <a href="{% url 'productline_update' pl.productLine %}">Edit</a> |
+                <a href="{% url 'productline_delete' pl.productLine %}">Delete</a>
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
